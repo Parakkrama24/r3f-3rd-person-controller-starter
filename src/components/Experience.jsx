@@ -7,6 +7,8 @@ import { useControls } from "leva";
 import { useRef } from "react";
 import { Character } from "./Character";
 import { Map } from "./Map";
+import { Physics } from "@react-three/rapier";
+import CharatorConrtroller from "./CharatorConrtroller";
 
 const maps = {
   castle_on_hills: {
@@ -42,7 +44,7 @@ export const Experience = () => {
 
   return (
     <>
-      <OrbitControls />
+      {/* <OrbitControls /> */}
       <Environment preset="sunset" />
       <directionalLight
         intensity={0.65}
@@ -61,12 +63,14 @@ export const Experience = () => {
           attach={"shadow-camera"}
         />
       </directionalLight>
+      <Physics debug>
       <Map
         scale={maps[map].scale}
         position={maps[map].position}
         model={`models/${map}.glb`}
       />
-      <Character scale={0.18} position-y={-0.25} animation={"idle"} />
+      <CharatorConrtroller/>
+      </Physics>
     </>
   );
 };
